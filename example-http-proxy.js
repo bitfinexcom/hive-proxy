@@ -2,7 +2,7 @@
 
 const request = require('request')
 const Sock = require('./lib/socket.js')
-const getOrder = require('./lib/order.js')
+const getOrder = require('./example-order.js')
 
 const s = new Sock({
   order0: 'ipc:///tmp/order0',
@@ -10,7 +10,7 @@ const s = new Sock({
 })
 
 setup()
-post(['get_wallet', '1'])
+//post(['get_wallet', '1'])
 
 setTimeout(() => {
   const o1 = getOrder({
@@ -34,11 +34,11 @@ setTimeout(() => {
   })
 
   post(['insert_order', o1])
-  post(['insert_order', o2])
+  // post(['insert_order', o2])
 }, 2000)
 
 setTimeout(() => {
-  post(['get_wallet', '1'])
+  // post(['get_wallet', '1'])
 }, 5000)
 
 function post (opts) {
