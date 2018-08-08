@@ -1,0 +1,26 @@
+{
+  "name": "hive-proxy",
+  "version": "1.0.0",
+  "description": "HTTP to engine proxy",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha && standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitfinexcom/hive-proxy.git"
+  },
+  "author": "Robert <robert@bitfinex.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "lodash": "^4.17.10",
+    "zmq": "^2.15.3"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "request": "^2.87.0",
+    "standard": "^11.0.1"
+  }
+}
