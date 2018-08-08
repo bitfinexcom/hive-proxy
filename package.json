@@ -4,7 +4,7 @@
   "description": "HTTP to engine proxy",
   "main": "index.js",
   "scripts": {
-    "test": "standard"
+    "test": "mocha && standard"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
     "zmq": "^2.15.3"
   },
   "devDependencies": {
+    "mocha": "^5.2.0",
     "request": "^2.87.0",
     "standard": "^11.0.1"
   }
