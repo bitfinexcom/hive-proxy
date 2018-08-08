@@ -41,7 +41,7 @@ function getOrder (data) {
     postOnly,
     id,
     type,
-    userId,
+    user_id,
     amount,
     price,
     pair
@@ -51,7 +51,7 @@ function getOrder (data) {
     id: id || Math.floor(Math.random() * 10000000000),
     type: type,
     lcy_post_only: postOnly,
-    userId: userId,
+    user_id: user_id,
     amount,
     amount_orig: amount,
     price,
