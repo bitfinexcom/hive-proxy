@@ -41,7 +41,7 @@ function getOrder (data) {
     postOnly,
     id,
     type,
-    user_id,
+    user_id, // eslint-disable-line camelcase
     amount,
     price,
     pair

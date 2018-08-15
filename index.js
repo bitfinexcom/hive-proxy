@@ -1,5 +1,5 @@
 'use strict'
 
-const proxy = require('./lib/proxy.js')
+const proxy = require('./lib/proxy-http.js')
 
 proxy.listen(8000)
