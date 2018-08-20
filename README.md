@@ -1,11 +1,24 @@
 # hive-proxy - Simple ZMQ connection helper for trading
 
+## ws proxy
+
+Start with:
+
+```
+node start-ws-proxy.js
+```
+
+There is an example in [./example-ws-proxy.js](./example-ws-proxy.js).
+
+The websocket server mimics the bfx v2 api. For order book updates it polls the hive gateway. It keeps a local copy to send order book updates next to snapshots.
+
+
 ## http proxy
 
 Start with:
 
 ```
-node index.js
+node start-http-proxy.js
 ```
 
 There is an example in [./example-http-proxy.js](./example-http-proxy.js) - this will create two users and submit two matching oders for them. Finally, it will print the updated user wallet balances.

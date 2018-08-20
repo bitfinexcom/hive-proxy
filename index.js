@@ -1,5 +1,6 @@
 'use strict'
 
-const proxy = require('./lib/proxy-http.js')
-
-proxy.listen(8000)
+module.exports = {
+  ProxyWs: require('./lib/proxy-ws.js'),
+  ProxyHttp: require('./lib/proxy-http.js')
+}
