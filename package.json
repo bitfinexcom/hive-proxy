@@ -14,8 +14,10 @@
   "license": "UNLICENSED",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cbq": "0.0.1",
     "express": "^4.16.3",
     "lodash": "^4.17.10",
+    "uuid": "^3.3.2",
     "zmq": "^2.15.3"
   },
   "devDependencies": {
