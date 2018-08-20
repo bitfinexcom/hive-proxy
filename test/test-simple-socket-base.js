@@ -2,10 +2,10 @@
 
 'use strict'
 
-const Sock = require('../lib/socket.js')
+const Sock = require('../lib/socket-base.js')
 const assert = require('assert')
 
-describe('simple communication', () => {
+describe('base: simple communication', () => {
   it('connects with shards and gateway', (done) => {
     const s = new Sock({
       gateway: 'ipc:///tmp/proxy0',

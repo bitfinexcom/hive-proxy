@@ -1,7 +1,7 @@
 'use strict'
 
 const request = require('request')
-const Sock = require('./lib/socket.js')
+const Sock = require('./lib/socket-base.js')
 const getOrder = require('./example-order.js')
 
 ;(async function () {

@@ -1,6 +1,6 @@
 'use strict'
 
-const Sock = require('./lib/socket.js')
+const Sock = require('./lib/socket-base.js')
 
 const s = new Sock({
   user: 'tcp://127.0.0.1:1337', // shard 0 in tcp mode
