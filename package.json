@@ -18,7 +18,9 @@
     "express": "^4.16.3",
     "lodash": "^4.17.10",
     "uuid": "^3.3.2",
-    "zmq": "^2.15.3"
+    "ws": "^6.0.0",
+    "zeromq": "git+https://github.com/zeromq/zeromq.js.git",
+    "zmq": "https://github.com/zeromq/zeromq.js"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
