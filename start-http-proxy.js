@@ -1,8 +1,8 @@
 'use strict'
 
-const { port } = require('./config/http.conf.json')
+const conf = require('./config/http.conf.json')
 
-console.log(`starting http server, port: ${port}`)
+console.log(`starting http server, port: ${conf.port}`)
 
 const proxy = require('./lib/proxy-http.js')
-proxy.listen(port)
+proxy.listen(conf)
