@@ -1,5 +1,12 @@
 # hive-proxy - Simple ZMQ connection helper for trading
 
+Setup:
+
+```
+cp config/http.conf.json.example config/http.conf.json
+cp config/ws.conf.json.example config/ws.conf.json
+```
+
 ## ws proxy
 
 Start with:
