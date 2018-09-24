@@ -21,7 +21,7 @@ describe('ext: simple communication', () => {
     baseSocket.send('order0', ['test_engine_reset', []])
     baseSocket.send('user0', ['test_engine_reset', []])
 
-    baseSocket.send('user0', ['update_user_conf', [1, {'ccys_margin': ['USD', 'BTC', 'ETH', 'LTC', 'JPY', 'EUR'], 'margin_version': 2}]])
+    baseSocket.send('user0', ['update_user_conf', [1, { 'ccys_margin': ['USD', 'BTC', 'ETH', 'LTC', 'JPY', 'EUR'], 'margin_version': 2 }]])
     baseSocket.send('user0', ['set_wallet_balance', [1, 'trading', 'USD', '1000.00', null, null]])
 
     return new Promise((resolve) => {

@@ -9,13 +9,13 @@ const s = new Sock({
   icpUser0: 'ipc:///tmp/user0'
 })
 
-s.send('gateway', ['set_gw_status', {'trigger_tickers': true, 'trigger_liq': true}])
+s.send('gateway', ['set_gw_status', { 'trigger_tickers': true, 'trigger_liq': true }])
 
 s.send(
   'user',
   [
     'update_user_conf',
-    [1, {'ccys_margin': ['USD', 'BTC', 'ETH', 'LTC', 'JPY', 'EUR'], 'margin_version': 2}]
+    [1, { 'ccys_margin': ['USD', 'BTC', 'ETH', 'LTC', 'JPY', 'EUR'], 'margin_version': 2 }]
   ]
 )
 
@@ -23,6 +23,6 @@ s.send(
   'icpUser0',
   [
     'update_user_conf',
-    [1, {'ccys_margin': ['USD', 'BTC', 'ETH', 'LTC', 'JPY', 'EUR'], 'margin_version': 2}]
+    [1, { 'ccys_margin': ['USD', 'BTC', 'ETH', 'LTC', 'JPY', 'EUR'], 'margin_version': 2 }]
   ]
 )
