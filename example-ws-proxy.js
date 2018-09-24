@@ -1,11 +1,11 @@
 'use strict'
 
-// const setup = require('./test/setup-engine.js')
+const setup = require('./test/setup-engine.js')
 
 const WebSocket = require('ws')
 
 ;(async function () {
-  // await setup()
+  await setup()
 
   const ws = new WebSocket('ws://localhost:8888')
 
@@ -34,18 +34,33 @@ const WebSocket = require('ws')
   })
 
   setTimeout(() => {
-    const order = JSON.stringify([
-      0,
-      'on',
-      null,
-      {
-        'type': 'EXCHANGE LIMIT',
-        'symbol': 'BTCUSD',
-        'amount': '1.0',
-        'price': '1'
-      }
-    ])
+    const o = {
+      'type': 'EXCHANGE LIMIT',
+      'symbol': 'BTCUSD',
+      'amount': '1.0',
+      'price': '1'
+    }
 
-    ws.send(order)
+    const getOrder = (o) => {
+      return JSON.stringify([
+        0,
+        'on',
+        null,
+        o
+      ])
+    }
+
+    ws.send(getOrder(o))
+    o.price = '1.2'
+    ws.send(getOrder(o))
+    o.price = '1.2'
+    ws.send(getOrder(o))
+
+    o.price = '2.2'
+    o.amount = '-1.0'
+    ws.send(getOrder(o))
+    o.price = '2.3'
+    o.amount = '-0.3'
+    ws.send(getOrder(o))
   }, 800)
 })()
