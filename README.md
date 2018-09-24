@@ -19,6 +19,12 @@ There is an example in [./example-ws-proxy.js](./example-ws-proxy.js).
 
 The websocket server mimics the bfx v2 api. For order book updates it polls the hive gateway. It keeps a local copy to send order book updates next to snapshots.
 
+To setup two users (user id `1` and `2`), give them wallet balances and put a few orders into the orderbook, run:
+
+```
+node example-ws-proxy.js
+```
+
 
 ## http proxy
 
