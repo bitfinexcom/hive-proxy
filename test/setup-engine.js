@@ -12,13 +12,13 @@ function setup () {
 
     s.send('order0', ['test_engine_reset', []])
     s.send('user0', ['test_engine_reset', []])
-    s.send('gateway', ['set_gw_status', {'trigger_tickers': true, 'trigger_liq': true}])
+    s.send('gateway', ['set_gw_status', { 'trigger_tickers': true, 'trigger_liq': true }])
 
-    s.send('user0', ['update_user_conf', [1, {'ccys_margin': ['USD', 'BTC', 'ETH', 'LTC', 'JPY', 'EUR'], 'margin_version': 2}]])
+    s.send('user0', ['update_user_conf', [1, { 'ccys_margin': ['USD', 'BTC', 'ETH', 'LTC', 'JPY', 'EUR'], 'margin_version': 2 }]])
     s.send('user0', ['set_wallet_balance', [1, 'exchange', 'USD', '1000.00', null, null]])
     s.send('user0', ['set_wallet_balance', [1, 'exchange', 'BTC', '1000.00', null, null]])
 
-    s.send('user0', ['update_user_conf', [2, {'ccys_margin': ['USD', 'BTC', 'ETH', 'LTC', 'JPY', 'EUR'], 'margin_version': 2}]])
+    s.send('user0', ['update_user_conf', [2, { 'ccys_margin': ['USD', 'BTC', 'ETH', 'LTC', 'JPY', 'EUR'], 'margin_version': 2 }]])
     s.send('user0', ['set_wallet_balance', [2, 'exchange', 'USD', '1000.00', null, null]])
     s.send('user0', ['set_wallet_balance', [2, 'exchange', 'BTC', '1000.00', null, null]])
 
