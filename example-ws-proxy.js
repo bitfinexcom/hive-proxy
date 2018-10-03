@@ -8,46 +8,83 @@ const WebSocket = require('ws')
   await setup()
 
   const ws = new WebSocket('ws://localhost:8888')
+  const wsUser2 = new WebSocket('ws://localhost:8888')
 
-  const auth = () => {
-    const msg = JSON.stringify({
+  const auth = (id) => {
+    return JSON.stringify({
       event: 'auth',
-      id: '1'
+      id: id
     })
-    ws.send(msg)
   }
 
-  ws.on('open', () => {
-    const msg = JSON.stringify({
+  const subscribeBook = (symbol) => {
+    return JSON.stringify({
       event: 'subscribe',
       channel: 'book',
-      symbol: 'BTCUSD'
+      symbol: symbol
     })
+  }
 
-    ws.send(msg)
+  wsUser2.on('open', () => {
+    wsUser2.send(auth(2))
+    wsUser2.send(subscribeBook('BTCUSD'))
+  })
 
-    auth()
+  wsUser2.on('message', (data) => {
+    console.log('wsUser2', data)
+  })
+
+  ws.on('open', () => {
+    ws.send(auth(1))
+    ws.send(subscribeBook('BTCUSD'))
   })
 
   ws.on('message', (data) => {
-    console.log(data)
+    console.log('ws', data)
   })
 
   setTimeout(() => {
+    sendMarginOrders()
+  }, 400)
+
+  setTimeout(() => {
+    sendExchangeOrders()
+  }, 800)
+
+  setTimeout(() => {
+    wsUser2.close()
+  }, 1200)
+
+  function getOrder (o) {
+    return JSON.stringify([
+      0,
+      'on',
+      null,
+      o
+    ])
+  }
+
+  function sendMarginOrders () {
     const o = {
-      'type': 'EXCHANGE LIMIT',
+      'type': 'LIMIT',
       'symbol': 'BTCUSD',
       'amount': '1.0',
       'price': '1'
     }
 
-    const getOrder = (o) => {
-      return JSON.stringify([
-        0,
-        'on',
-        null,
-        o
-      ])
+    wsUser2.send(getOrder(o))
+
+    o.type = 'MARKET'
+    o.amount = '-1.0'
+    ws.send(getOrder(o))
+  }
+
+  function sendExchangeOrders () {
+    const o = {
+      'type': 'EXCHANGE LIMIT',
+      'symbol': 'BTCUSD',
+      'amount': '1.0',
+      'price': '1'
     }
 
     ws.send(getOrder(o))
@@ -62,5 +99,5 @@ const WebSocket = require('ws')
     o.price = '2.3'
     o.amount = '-0.3'
     ws.send(getOrder(o))
-  }, 800)
+  }
 })()
