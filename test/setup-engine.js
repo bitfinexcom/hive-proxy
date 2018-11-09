@@ -1,8 +1,6 @@
 'use strict'
 
 const Sock = require('../lib/socket-base.js')
-const Redis = require('ioredis')
-const redis = new Redis()
 
 function setup () {
   return new Promise((resolve) => {
@@ -28,19 +26,8 @@ function setup () {
     s.send('user0', ['set_wallet_balance', [2, 'trading', 'USD', '500.00', null, null]])
     s.send('user0', ['set_wallet_balance', [2, 'trading', 'BTC', '600.00', null, null]])
 
-    const marginSettings = { 'offers_long_BTCUSD': 10000, 'offers_short_BTCUSD': 10000 }
-    const msg = {
-      t: 1,
-      seq: 1,
-      a: 'update_settings',
-      o: marginSettings
-    }
-
-    redis.rpush('global_engine_v2', JSON.stringify(msg))
-
     setTimeout(() => {
       s.close()
-      redis.disconnect()
 
       resolve()
     }, 250)
