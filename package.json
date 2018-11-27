@@ -19,8 +19,7 @@
     "lodash": "^4.17.10",
     "uuid": "^3.3.2",
     "ws": "^6.0.0",
-    "zeromq": "git+https://github.com/zeromq/zeromq.js.git",
-    "zmq": "https://github.com/zeromq/zeromq.js"
+    "zeromq": "^5.1.0"
   },
   "devDependencies": {
     "ioredis": "^4.0.0",
