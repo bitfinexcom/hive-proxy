@@ -12,7 +12,8 @@ const p = new ProxyWs({
     clientTracking: true
   },
   pairs: pairs,
-  endpoint: endpoint
+  endpoint: endpoint,
+  authPlugin: null
 })
 
 module.exports = p
