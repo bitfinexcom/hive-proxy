@@ -30,8 +30,22 @@ const WebSocket = require('ws')
     wsUser2.send(subscribeBook('BTCUSD'))
   })
 
+  const receivedWalletSnap = (parsed) => {
+    if (!Array.isArray(parsed)) return false
+
+    return parsed[1] === 'ws'
+  }
+
   wsUser2.on('message', (data) => {
-    console.log('wsUser2', data)
+    console.log('ws2', data)
+    const parsed = JSON.parse(data)
+    if (!receivedWalletSnap(parsed)) return
+
+    sendExchangeOrders(2)
+
+    setTimeout(() => {
+      // sendMarginOrders()
+    }, 1000)
   })
 
   ws.on('open', () => {
@@ -41,19 +55,20 @@ const WebSocket = require('ws')
 
   ws.on('message', (data) => {
     console.log('ws', data)
+
+    const parsed = JSON.parse(data)
+    if (!receivedWalletSnap(parsed)) return
+
+    sendExchangeOrders(1)
+
+    setTimeout(() => {
+      // sendMarginOrders()
+    }, 1000)
   })
 
   setTimeout(() => {
-    sendMarginOrders()
-  }, 400)
-
-  setTimeout(() => {
-    sendExchangeOrders()
-  }, 800)
-
-  setTimeout(() => {
     wsUser2.close()
-  }, 1200)
+  }, 6000)
 
   function getOrder (o) {
     return JSON.stringify([
@@ -79,7 +94,7 @@ const WebSocket = require('ws')
     ws.send(getOrder(o))
   }
 
-  function sendExchangeOrders () {
+  function sendExchangeOrders (user) {
     const o = {
       'type': 'EXCHANGE LIMIT',
       'symbol': 'BTCUSD',
@@ -87,17 +102,25 @@ const WebSocket = require('ws')
       'price': '1'
     }
 
-    ws.send(getOrder(o))
+    if (user === 2) {
+      o.price = '1.2'
+      o.amount = '-1.0'
+      setTimeout(() => { wsUser2.send(getOrder(o)) }, 2000)
+      return
+    }
+
     o.price = '1.2'
     ws.send(getOrder(o))
     o.price = '1.2'
     ws.send(getOrder(o))
 
-    o.price = '2.2'
-    o.amount = '-1.0'
-    ws.send(getOrder(o))
-    o.price = '2.3'
-    o.amount = '-0.3'
-    ws.send(getOrder(o))
+    setTimeout(() => {
+      o.price = '2.2'
+      o.amount = '-1.0'
+      ws.send(getOrder(o))
+      o.price = '2.3'
+      o.amount = '-0.3'
+      ws.send(getOrder(o))
+    }, 4000)
   }
 })()
