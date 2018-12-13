@@ -44,7 +44,7 @@ const WebSocket = require('ws')
     sendExchangeOrders(2)
 
     setTimeout(() => {
-      // sendMarginOrders()
+      sendMarginOrders(2)
     }, 1000)
   })
 
@@ -62,13 +62,13 @@ const WebSocket = require('ws')
     sendExchangeOrders(1)
 
     setTimeout(() => {
-      // sendMarginOrders()
+      sendMarginOrders(1)
     }, 1000)
   })
 
   setTimeout(() => {
     wsUser2.close()
-  }, 6000)
+  }, 10000)
 
   function getOrder (o) {
     return JSON.stringify([
@@ -79,7 +79,8 @@ const WebSocket = require('ws')
     ])
   }
 
-  function sendMarginOrders () {
+  let runs = 0
+  function sendMarginOrders (user) {
     const o = {
       'type': 'LIMIT',
       'symbol': 'BTCUSD',
@@ -87,11 +88,22 @@ const WebSocket = require('ws')
       'price': '1'
     }
 
-    wsUser2.send(getOrder(o))
+    if (user === 2) {
+      wsUser2.send(getOrder(o))
+      return
+    }
 
     o.type = 'MARKET'
     o.amount = '-1.0'
     ws.send(getOrder(o))
+
+    setTimeout(() => {
+      if (runs === 1) return
+      runs++
+
+      sendMarginOrders(1)
+      sendMarginOrders(2)
+    }, 2000)
   }
 
   function sendExchangeOrders (user) {
@@ -121,6 +133,6 @@ const WebSocket = require('ws')
       o.price = '2.3'
       o.amount = '-0.3'
       ws.send(getOrder(o))
-    }, 4000)
+    }, 2000)
   }
 })()
