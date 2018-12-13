@@ -1,13 +1,31 @@
 'use strict'
 
-const { endpoint } = require('../config/ws.conf.json')
+const { endpoint, user, order } = require('../config/ws.conf.json')
 const Sock = require('../lib/socket-base.js')
 
 function setup () {
   return new Promise((resolve) => {
-    const s = new Sock({
+    const opts = {
       gateway: endpoint
-    })
+    }
+
+    if (order) {
+      opts.order0 = order
+    }
+
+    if (user) {
+      opts.user0 = user
+    }
+
+    const s = new Sock(opts)
+
+    if (order) {
+      s.send('order0', ['test_engine_reset', []])
+    }
+
+    if (user) {
+      s.send('user0', ['test_engine_reset', []])
+    }
 
     s.send('gateway', ['set_gw_status', { 'trigger_tickers': true, 'trigger_liq': true }])
 
