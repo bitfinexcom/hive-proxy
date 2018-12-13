@@ -41,6 +41,24 @@ function setup () {
     s.send('gateway', ['set_wallet_balance', [2, 'trading', 'USD', '500.00', null, null]])
     s.send('gateway', ['set_wallet_balance', [2, 'trading', 'BTC', '600.00', null, null]])
 
+    const marginSettings = {
+      'offers_long_BTCUSD': 10000,
+      'offers_short_BTCUSD': 10000,
+      'offers_long_ETHUSD': 10000,
+      'offers_short_ETHUSD': 10000,
+      'offers_long_EOSUSD': 10000,
+      'offers_short_EOSUSD': 10000
+    }
+
+    const msg = {
+      t: 1,
+      seq: 1,
+      a: 'update_settings',
+      o: marginSettings
+    }
+
+    s.send('gateway', ['update_engine_settings', [msg]])
+
     setTimeout(() => {
       s.close()
 
