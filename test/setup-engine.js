@@ -45,7 +45,7 @@ function setup () {
       s.close()
 
       resolve()
-    }, 250)
+    }, 1000)
   })
 }
 
