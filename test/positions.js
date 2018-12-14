@@ -16,6 +16,13 @@ describe('positions: state handling, parsing and messages', () => {
     assert.deepStrictEqual(msgs[0], ['0', 'ps', [ res1 ]])
   })
 
+  it('new snapshot is also returned in first connect with n positions', () => {
+    const c = new Positions()
+    const msgs = c.getMessages({})
+
+    assert.deepStrictEqual(msgs[0], ['0', 'ps', []])
+  })
+
   it('empty array is returned if no update happens', () => {
     const c = new Positions()
     const msgs = c.getMessages(getPosition1())
@@ -23,7 +30,7 @@ describe('positions: state handling, parsing and messages', () => {
     const res1 = [ 'BTCUSD', 'ACTIVE', '1.0', '1.2', '0', null, null,
       null, null, null, null ]
 
-    assert.deepStrictEqual(msgs, ['0', 'ps', [ res1 ]])
+    assert.deepStrictEqual(msgs, [['0', 'ps', [ res1 ]]])
 
     const res = c.getMessages(getPosition1())
     assert.deepStrictEqual(res, [])
@@ -36,7 +43,7 @@ describe('positions: state handling, parsing and messages', () => {
     const res1 = [ 'BTCUSD', 'ACTIVE', '1.0', '1.2', '0', null, null,
       null, null, null, null ]
 
-    assert.deepStrictEqual(msgs, ['0', 'ps', [ res1 ]])
+    assert.deepStrictEqual(msgs, [['0', 'ps', [ res1 ]]])
 
     const res = c.getMessages(getTwoPositions())
 
