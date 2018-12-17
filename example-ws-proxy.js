@@ -135,4 +135,18 @@ const WebSocket = require('ws')
       ws.send(getOrder(o))
     }, 2000)
   }
+
+  function cancel (sock, id, pair) {
+    const msg = [
+      0,
+      'oc',
+      null,
+      {
+        id: id,
+        pair: pair
+      }
+    ]
+
+    sock.send(JSON.stringify(msg))
+  }
 })()
