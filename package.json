@@ -11,7 +11,7 @@
     "url": "git+https://github.com/bitfinexcom/hive-proxy.git"
   },
   "author": "Robert <robert@bitfinex.com>",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cbq": "0.0.1",
