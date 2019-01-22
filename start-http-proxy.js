@@ -4,5 +4,6 @@ const conf = require('./config/http.conf.json')
 
 console.log(`starting http server, port: ${conf.port}`)
 
-const proxy = require('./lib/proxy-http.js')
-proxy.listen(conf)
+const Proxy = require('./lib/proxy-http.js')
+const proxy = new Proxy(conf)
+proxy.listen()

@@ -1,6 +1,7 @@
 {
   "pairs": [
-    "BTCUSD"
+    "BTCUSD",
+    "ETHUSD"
   ],
   "port": 8888,
   "endpoint": "ipc:///tmp/gw0",
